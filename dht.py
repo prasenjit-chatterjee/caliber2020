@@ -1,7 +1,7 @@
 import Adafruit_DHT
 
 class dht:
-    #DHT11 reading
+    #DHT11 reading check for commit
     sensor = Adafruit_DHT.DHT22
     input_pin = 26
 
