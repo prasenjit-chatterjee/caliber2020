@@ -29,21 +29,21 @@ therm=therm_sensor(CaliberDeviceId)
 while True:
     threads=[]
 
-    motion_thread = threading.Thread(target=motion.post_to_iot_hub)            
-    motion_thread.start()
-    threads.append(motion_thread)
+    # motion_thread = threading.Thread(target=motion.post_to_iot_hub)            
+    # motion_thread.start()
+    # threads.append(motion_thread)
 
-    pulse_thread = threading.Thread(target=bpm.read_pulse)            
-    pulse_thread.start()
-    threads.append(pulse_thread)
+    # pulse_thread = threading.Thread(target=bpm.read_pulse)            
+    # pulse_thread.start()
+    # threads.append(pulse_thread)
 
-    ecg_thread = threading.Thread(target=ecg_socket, args=(CalibreECGDevice,))
-    ecg_thread.start()
-    threads.append(ecg_thread)
+    # ecg_thread = threading.Thread(target=ecg_socket, args=(CalibreECGDevice,))
+    # ecg_thread.start()
+    # threads.append(ecg_thread)
 
-    therm_thread = threading.Thread(target=therm.post_to_iot_hub)            
-    therm_thread.start()
-    threads.append(therm_thread)
+    # therm_thread = threading.Thread(target=therm.post_to_iot_hub)            
+    # therm_thread.start()
+    # threads.append(therm_thread)
 
     receiver_thread = threading.Thread(target=iot_hub_client.message_listener)            
     receiver_thread.start()

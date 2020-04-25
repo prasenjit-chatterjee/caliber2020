@@ -38,7 +38,7 @@ class iot_hub:
             message = self.client.receive_message()
             iot_hub.RECEIVED_MESSAGES += 1
             print("Message received")
-            response = message.data.decode().split(1)
+            response = message.data.decode().split(":",1)
             threads=[]
             tune=1
             if response[0]=="ECG":
