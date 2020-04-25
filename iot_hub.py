@@ -14,7 +14,7 @@ class iot_hub:
 
     def __init__(self, connection_string):
         # Create an IoT Hub client
-        self.client = IoTHubDeviceClient.create_from_connection_string(iot_hub.CONNECTION_STRING)        
+        self.client = IoTHubDeviceClient.create_from_connection_string(connection_string)        
 
     def send_message(self, message):
         try:
