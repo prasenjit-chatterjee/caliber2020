@@ -4,18 +4,18 @@ import iot_hub
 import threading
 import gyro
 import pulse_sensor
+import ecg_socket
 
 from pulse_sensor import *
 from gyro import *
 from therm_sensor import *
 from iot_hub import *
+from ecg_socket import *
 
 CalibreGyroDevice = "HostName=azurecrusaders.azure-devices.net;DeviceId=CalibreGyroDevice;SharedAccessKey=pzuBw18h8m46KTz4HbKpj3GnKppYuWizTVQDUB+MmWc="
-
 CalibreECGDevice = "HostName=azurecrusaders.azure-devices.net;DeviceId=CalibreECGDevice;SharedAccessKey=YFghzoPgF8PS4Bb3Yan5A3FikZvL+gnxn5cTiaCjWyk="
-
 CalibrePulseDevice = "HostName=azurecrusaders.azure-devices.net;DeviceId=CalibrePulseDevice;SharedAccessKey=DGUDl7AqZBqgOkp2wjjlsG4tvcdeF261+AYsgvQncJw="
-CaliberDeviceId="HostName=azurecrusaders.azure-devices.net;DeviceId=CaliberDeviceId;SharedAccessKey=kT+ZzVvq76QHe4wWSKnUCEDr2jr7OziPSQ4G0hEa+t8="
+CaliberDeviceId = "HostName=azurecrusaders.azure-devices.net;DeviceId=CaliberDeviceId;SharedAccessKey=kT+ZzVvq76QHe4wWSKnUCEDr2jr7OziPSQ4G0hEa+t8="
 
 #lcd = lcd_i2c()
 iot_hub_client = iot_hub(CaliberDeviceId)
@@ -34,9 +34,9 @@ while True:
     pulse_thread.start()
     threads.append(pulse_thread)
 
-    # ecg_thread = threading.Thread(target=iot_hub.message_listener, args=(self,))            
-    # ecg_thread.start()
-    # threads.append(ecg_thread)
+    ecg_thread = threading.Thread(target=ecg_socket, args=(CalibreECGDevice,))
+    ecg_thread.start()
+    threads.append(ecg_thread)
 
     therm_thread = threading.Thread(target=therm.post_to_iot_hub)            
     therm_thread.start()
