@@ -28,7 +28,7 @@ class pulse(object):
   def post_to_iot_hub(self,bpm):    
     msg_txt_formatted = self.hub_message.format(bpm=bpm)
     print(msg_txt_formatted)
-    #self.iot_hub.send_message(msg_txt_formatted)
+    self.iot_hub.send_message(msg_txt_formatted)
 
   def read_pulse(self):
       firstBeat = True

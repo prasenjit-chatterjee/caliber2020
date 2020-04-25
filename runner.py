@@ -1,4 +1,3 @@
-#import lcd_i2c
 import therm_sensor
 import iot_hub
 import threading
@@ -12,12 +11,16 @@ from therm_sensor import *
 from iot_hub import *
 from ecg_socket import *
 
-CalibreGyroDevice = "HostName=azurecrusaders.azure-devices.net;DeviceId=CalibreGyroDevice;SharedAccessKey=pzuBw18h8m46KTz4HbKpj3GnKppYuWizTVQDUB+MmWc="
-CalibreECGDevice = "HostName=azurecrusaders.azure-devices.net;DeviceId=CalibreECGDevice;SharedAccessKey=YFghzoPgF8PS4Bb3Yan5A3FikZvL+gnxn5cTiaCjWyk="
-CalibrePulseDevice = "HostName=azurecrusaders.azure-devices.net;DeviceId=CalibrePulseDevice;SharedAccessKey=DGUDl7AqZBqgOkp2wjjlsG4tvcdeF261+AYsgvQncJw="
-CaliberDeviceId = "HostName=azurecrusaders.azure-devices.net;DeviceId=CaliberDeviceId;SharedAccessKey=kT+ZzVvq76QHe4wWSKnUCEDr2jr7OziPSQ4G0hEa+t8="
+# CalibreGyroDevice = "HostName=azurecrusaders.azure-devices.net;DeviceId=CalibreGyroDevice;SharedAccessKey=pzuBw18h8m46KTz4HbKpj3GnKppYuWizTVQDUB+MmWc="
+# CalibreECGDevice = "HostName=azurecrusaders.azure-devices.net;DeviceId=CalibreECGDevice;SharedAccessKey=YFghzoPgF8PS4Bb3Yan5A3FikZvL+gnxn5cTiaCjWyk="
+# CalibrePulseDevice = "HostName=azurecrusaders.azure-devices.net;DeviceId=CalibrePulseDevice;SharedAccessKey=DGUDl7AqZBqgOkp2wjjlsG4tvcdeF261+AYsgvQncJw="
+# CaliberDeviceId = "HostName=azurecrusaders.azure-devices.net;DeviceId=CaliberDeviceId;SharedAccessKey=kT+ZzVvq76QHe4wWSKnUCEDr2jr7OziPSQ4G0hEa+t8="
 
-#lcd = lcd_i2c()
+CaliberDeviceId = "HostName=azurecrusadersiot.azure-devices.net;DeviceId=CaliberDeviceId;SharedAccessKey=GhIuxpdBvgeNmoKRwdDf2aGvSQQtQfb04DHCCpekvdM="
+CalibreGyroDevice="HostName=azurecrusadersiot.azure-devices.net;DeviceId=CalibreGyroDevice;SharedAccessKey=w1qjZrZ3xbXu9r7UI4RGvjWyNrelGookUdtpGeKhA7s="
+CalibrePulseDevice="HostName=azurecrusadersiot.azure-devices.net;DeviceId=CalibrePulseDevice;SharedAccessKey=oyLj60n4vR6+S/YpvLAFoof+ficCbVHcsG6DlUsc9lA="
+CalibreECGDevice="HostName=azurecrusadersiot.azure-devices.net;DeviceId=CalibreECGDevice;SharedAccessKey=Sk7v7NYGHcK+QuahMAFQWAZ1EFejFJ/MG8woD9/aQJI="
+
 iot_hub_client = iot_hub(CaliberDeviceId)
 motion=gyro(CalibreGyroDevice)
 bpm=pulse(CalibrePulseDevice)
@@ -50,15 +53,3 @@ while True:
     for t in threads:
         t.join()
     print ("Exiting Main Thread")
-
-    #lcd.right_to_left_scroll(scrollText,100)    
-    #iot_hub_client.iothub_send_message(msg_txt_formatted)
-    #print(scrollText)
-
-
-
-# ff='{{"gyro":{{"Gx":{Gx:0.3f},"Gy":{Gy:0.3f},"Gz":{Gz:0.3f},"Ax":{Ax:0.3f},"Ay":{Ay:0.3f},"Az":{Az:0.3f}}}}}'
-# hub_message = '{{"roomtemperature": {temperature},"humidity": {humidity}, "bodytemperature": {bodytemperature}}}'
-# uu=hub_message.format(temperature=0, humidity=0, bodytemperature=0)
-# fss=ff.format(Gx=555.555555555,Gy=555.555555555,Gz=0,Ax=0,Ay=0,Az=555.555555555)
-# print(fss)

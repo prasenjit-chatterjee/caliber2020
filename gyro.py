@@ -105,4 +105,4 @@ class gyro():
 		while True:
 			result = self.read_data()
 			print(result)
-			#self.iot_hub.send_message(result)
+			self.iot_hub.send_message(result)

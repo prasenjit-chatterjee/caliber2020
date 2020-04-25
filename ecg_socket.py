@@ -20,7 +20,7 @@ class ecg_socket():
     def on_message(self, message):
         msg_txt_formatted = self.hub_message.format(ecg=message)
         print(msg_txt_formatted)
-        #self.iot_hub.send_message(msg_txt_formatted)
+        self.iot_hub.send_message(msg_txt_formatted)
         
 
     def on_error(self, error):
