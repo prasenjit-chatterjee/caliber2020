@@ -22,6 +22,7 @@ class iot_hub:
         # Create an IoT Hub client
         self.client = IoTHubDeviceClient.create_from_connection_string(connection_string)
         self.lcd = lcd_i2c()
+        self.buzzer=buzzer()
 
     def send_message(self, message):
         try:
@@ -37,7 +38,7 @@ class iot_hub:
             message = self.client.receive_message()
             iot_hub.RECEIVED_MESSAGES += 1
             print("Message received")
-            response = message.data.decode().split()
+            response = message.data.decode().split(1)
             threads=[]
             tune=1
             if response[0]=="ECG":

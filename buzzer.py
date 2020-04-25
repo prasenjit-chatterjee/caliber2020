@@ -3,11 +3,12 @@ import time               #import the time library
 
 class buzzer(object):
  def __init__(self):
-  GPIO.setmode(GPIO.BCM)  
-  self.buzzer_pin = 5 #set to GPIO pin 5
-  GPIO.setup(self.buzzer_pin, GPIO.IN)
-  GPIO.setup(self.buzzer_pin, GPIO.OUT)
-  #print("buzzer ready")
+    GPIO.setwarnings(False)
+    GPIO.setmode(GPIO.BCM)  
+    self.buzzer_pin = 5 #set to GPIO pin 5
+    GPIO.setup(self.buzzer_pin, GPIO.IN)
+    GPIO.setup(self.buzzer_pin, GPIO.OUT)
+    #print("buzzer ready")
 
  def __del__(self):
   class_name = self.__class__.__name__
